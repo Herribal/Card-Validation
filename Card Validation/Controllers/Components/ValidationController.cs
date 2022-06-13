@@ -66,6 +66,8 @@ namespace Card.Validation.Web.App.Controllers.Components
                     if (!result)
                         return View(model);
 
+                    // MySql Syntax error -  You have an error in your SQL syntax;
+                    // check the manual that corresponds to your MySQL server version for the right syntax to use near '' Line 1
                     uow.Commit();
 
                     return RedirectToAction("Index", "Home");

@@ -1,12 +1,8 @@
 ﻿using Card.Validation.Core.Attributes;
 using Card.Validation.Core.Domain;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Card.Validation.Core.DataAccess.Repository
 {
