@@ -73,31 +73,47 @@ namespace Card.Validation.Web.App.DataAccess.Repository.DB
         }
 
         // ADD
-        public async Task<bool> InsertCardAsync(CardModel model)
+        //public async Task<bool> InsertCardAsync(CardModel model)
+        //{
+        //    const string sql = @"INSERT INTO `validation`.`card`
+        //                        (
+        //                            `CardRefNo`,
+        //                            `CardNumber`,
+        //                            `CardCreateDate`,
+        //                            `CardTypeRefNo`
+        //                        )
+        //                        VALUES
+        //                        (
+        //                            @CardRefNo,
+        //                            @CardNumber,
+        //                            @CardCreateDate,
+        //                            @CardTypeRefNo
+        //                        );";
+
+        //    return await Connection.ExecuteAsync(sql, new
+        //    {
+        //        model.CardRefNo,
+        //        model.CardNumber,
+        //        model.CardCreateDate,
+        //        model.CardTypeRefNo
+
+        //    }, Transaction).ConfigureAwait(false) > 0;
+        //}
+
+        public async Task<bool> InsertCardAsync(string tableName, NewCardModel model)
         {
-            const string sql = @"INSERT INTO `card`
-                                    (
-                                        `CardRefNo`,
-                                        `CardNumber`,
-                                        `CardCreateDate`,
-                                        `CardTypeRefNo`
-                                    )
-                                    VALUES
-                                    (
-                                        @NewId,
-                                        @CardNumber,
-                                        @CardCreateDate,
-                                        @CardTypeRefNo
-                                    );";
+            var affectedRows = await Connection.ExecuteAsync(
+                GenerateMySqlInsertQuery<NewCardModel>(tableName),
+                new
+                {
+                    model.CardRefNo,
+                    model.CardNumber,
+                    model.CardCreateDate,
+                    model.CardTypeRefNo
+                }, Transaction
+            ).ConfigureAwait(false);
 
-            return await Connection.ExecuteAsync(sql, new
-            {
-                NewId = model.CardRefNo,
-                CardNumber = model.CardNumber,
-                CardCreateDate = model.CardCreateDate,
-                CardTypeRefNo = model.CardTypeRefNo
-
-            }, Transaction).ConfigureAwait(false) > 0;
+            return affectedRows > 0;
         }
 
         // DELETE

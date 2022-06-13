@@ -17,14 +17,12 @@ namespace Card.Validation.Web.App.Controllers.Components
             _cardHelper = new CardHelper();
         }
 
-        // GET: Validation
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             return View();
         }
 
-        // POST: Validation/card
         [HttpPost]
         public async Task<ActionResult> Index(ValidationViewModel model)
         {
@@ -59,8 +57,11 @@ namespace Card.Validation.Web.App.Controllers.Components
                         CardCreateDate = DateTime.Now.ToString("yyyy/dd/MM H:mm:ss"),
                         CardTypeRefNo = type.CardTypeRefNo
                     };
+
+                    var newCard = AppConfig.AutoMapper.Map<NewCardModel>(card);
                 
-                    var result = await uow.DBRepository.InsertCardAsync(card);
+                    var result = await uow.DBRepository.InsertCardAsync("card", newCard)
+                        .ConfigureAwait(false);
 
                     if (!result)
                         return View(model);
@@ -72,10 +73,10 @@ namespace Card.Validation.Web.App.Controllers.Components
             }
             catch (Exception ex)
             {
-                var message = ex.Message;
-            }
-
-            return View();
+                var message = ex.Message;           
+                
+                return View(model);
+            }                          
         }
     }
 }

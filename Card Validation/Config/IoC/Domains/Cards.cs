@@ -1,4 +1,5 @@
 ﻿using Card.Validation.Core.Attributes;
+using Card.Validation.Core.Config;
 using Card.Validation.Web.App.DataAccess.RepositoryUow.DB;
 using Unity;
 using Unity.Injection;
@@ -13,6 +14,8 @@ namespace Card.Validation.Web.App.Config.IoC.Domain
         {
             container.RegisterType<IDBRepositoryUow, DBRepositoryUow>(new TransientLifetimeManager(),
                 new InjectionConstructor(AppConfig.DatabaseConnection));
+
+            container.RegisterInstance(AutoMapperConfig.CreateCustomMaps());
         }
     }
 }

@@ -14,7 +14,8 @@ namespace Card.Validation.Web.App.DataAccess.Repository.DB
         Task<CardTypeModel> GetCardTypeByCodeAsync(string code);
 
         // ADD
-        Task<bool> InsertCardAsync(CardModel model);
+        //Task<bool> InsertCardAsync(CardModel model);
+        Task<bool> InsertCardAsync(string tableName, NewCardModel model);
 
         // DELETE
         Task<IEnumerable<CardModel>> DeleteCardAsync();

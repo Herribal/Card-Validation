@@ -140,6 +140,7 @@
     <Compile Include="Attributes\IocDomainAttribute.cs" />
     <Compile Include="Attributes\IgnoreAttribute.cs" />
     <Compile Include="Attributes\TableAttribute.cs" />
+    <Compile Include="Config\AutoMapperConfig.cs" />
     <Compile Include="Config\AppConfig.cs" />
     <Compile Include="Config\IoC\Domain\Cards.cs" />
     <Compile Include="Config\IoC\StandardDi.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="DataAccess\Repository\RepositoryBase.cs" />
     <Compile Include="DataAccess\Uow\IUow.cs" />
     <Compile Include="DataAccess\Uow\UowBase.cs" />
+    <Compile Include="Domain\Cards\NewCardModel.cs" />
     <Compile Include="Domain\Cards\CardModel.cs" />
     <Compile Include="Domain\IDomain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

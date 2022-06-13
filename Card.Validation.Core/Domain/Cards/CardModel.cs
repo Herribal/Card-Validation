@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Card.Validation.Core.Domain.Cards
 {
+    [AutoMap(typeof(NewCardModel), ReverseMap = true)]
     public class CardModel
     {
         public string CardRefNo { get; set; }
