@@ -1,0 +1,37 @@
+﻿@model Card.Validation.Web.App.Models.ValidationViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-4" style="width: 100%;">
+        @using (Ajax.BeginForm("Index", "Validation", new AjaxOptions
+        { }))
+        {
+            <div class="row col-lg-6">
+                <h3>
+                    Enter Card Number
+                </h3>
+            </div>
+            <div class="row col-lg-6">
+                <div class="form-group">
+                    @Html.Label("cardLabel", "Card Type", new { @id = "cardLabel", @display = "none" })
+                    @Html.TextBoxFor(m => m.CardNumber, new { @id = "cardNumberId", @class = "form-control", @maxlength = "16" })
+                    @Html.ValidationMessageFor(m => m.CardNumber, "", new { @class = "text-danger" })
+
+                    @Html.HiddenFor(m => m.CardTypeCode, new { @id = "cardTypeCode" })
+                </div>
+            </div>
+            <div class="row col-lg-6">
+                <div class="form-group" style="width: 200px">
+                    <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/card")
+}
